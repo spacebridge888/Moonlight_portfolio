@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaCode, FaRocket, FaShieldAlt, FaUsers, FaLightbulb, FaTrophy, FaRocket as FaRocketIcon, FaShieldAlt as FaShieldIcon, FaBolt, FaHandshake, FaGem, FaGlobe, FaCog, FaPalette, FaCloud, FaTools } from 'react-icons/fa';
+import { FaTrophy, FaGem, FaGlobe, FaCog, FaPalette, FaCloud, FaTools } from 'react-icons/fa';
 import { skills, experience, certifications } from '../data/skills';
 
 const Skills = () => {

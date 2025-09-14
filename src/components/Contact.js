@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaEnvelope, FaTelegram, FaDiscord, FaMapMarkerAlt, FaPhone, FaPaperPlane } from 'react-icons/fa';
+import { FaGithub, FaEnvelope, FaTelegram, FaDiscord, FaPaperPlane } from 'react-icons/fa';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -75,7 +75,7 @@ const Contact = () => {
             <span className="gradient-text">Get In Touch</span>
           </h2>
           <p className="text-xl text-secondary-300 max-w-3xl mx-auto">
-            Ready to build something amazing together? I'm always excited to discuss 
+            Ready to build something amazing together? I&apos;m always excited to discuss 
             new blockchain projects and collaborate on innovative solutions.
           </p>
         </motion.div>
@@ -90,11 +90,11 @@ const Contact = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Let's Connect</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Let&apos;s Connect</h3>
               <p className="text-secondary-300 leading-relaxed mb-8">
-                I'm always ready to accept client proposals and will actively collaborate 
+                I&apos;m always ready to accept client proposals and will actively collaborate 
                 with you to ensure project success. Whether you need a DeFi protocol, 
-                NFT marketplace, or any other blockchain solution, let's discuss how 
+                NFT marketplace, or any other blockchain solution, let&apos;s discuss how 
                 we can bring your vision to life.
               </p>
             </div>
@@ -138,7 +138,7 @@ const Contact = () => {
                 <span className="text-white font-semibold">Available for Projects</span>
               </div>
               <p className="text-secondary-300 text-sm">
-                I'm currently accepting new blockchain development projects. 
+                I&apos;m currently accepting new blockchain development projects. 
                 Response time: Usually within 24 hours.
               </p>
             </motion.div>

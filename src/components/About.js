@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { FaCode, FaRocket, FaShieldAlt, FaUsers, FaLightbulb, FaTrophy, FaRocket as FaRocketIcon, FaShieldAlt as FaShieldIcon, FaBolt, FaHandshake } from 'react-icons/fa';
 
@@ -67,7 +66,7 @@ const About = () => {
                 <h3 className="text-2xl font-bold text-white mb-4">My Journey</h3>
                 <p className="text-secondary-300 leading-relaxed">
                   Starting as a frontend developer in 2017, I quickly discovered my passion for 
-                  blockchain technology. Over the years, I've evolved into a senior blockchain 
+                  blockchain technology. Over the years, I&apos;ve evolved into a senior blockchain 
                   developer, specializing in DeFi protocols, NFT marketplaces, and cross-chain solutions.
                 </p>
               </div>
@@ -171,8 +170,8 @@ const About = () => {
               Ready to Build Something Amazing?
             </h3>
             <p className="text-secondary-300 mb-6">
-              I'm always ready to accept client proposals and will actively collaborate with you 
-              to ensure project success. Let's discuss how we can bring your blockchain vision to life.
+              I&apos;m always ready to accept client proposals and will actively collaborate with you 
+              to ensure project success. Let&apos;s discuss how we can bring your blockchain vision to life.
             </p>
             <motion.a
               href="#contact"

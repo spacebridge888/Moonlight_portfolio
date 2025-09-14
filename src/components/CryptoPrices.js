@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaBitcoin, FaEthereum, FaRocket, FaArrowUp, FaArrowDown, FaMinus, FaChartLine, FaCoins, FaWifi } from 'react-icons/fa';
 import { fetchCryptoPrices, getMockCryptoData } from '../services/cryptoApi';
@@ -26,7 +26,7 @@ const CryptoPrices = () => {
             data = await fetchCryptoPrices();
             setLastUpdated(new Date());
           } catch (apiError) {
-            console.warn('API failed, using mock data:', apiError);
+            // API failed, using mock data
             data = getMockCryptoData();
             setError('Using cached data - API unavailable');
           }
@@ -37,7 +37,7 @@ const CryptoPrices = () => {
         
         setPrices(data);
       } catch (err) {
-        console.error('Error fetching prices:', err);
+        // Error fetching prices
         setError('Failed to fetch prices');
         setPrices(getMockCryptoData());
       } finally {

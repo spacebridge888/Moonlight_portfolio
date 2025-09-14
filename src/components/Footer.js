@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaEnvelope, FaTelegram, FaDiscord, FaHeart, FaArrowUp, FaRocket, FaGem } from 'react-icons/fa';
 

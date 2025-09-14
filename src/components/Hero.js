@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaEnvelope, FaTelegram, FaDiscord, FaDownload, FaArrowDown, FaRocket, FaGem, FaBolt, FaBitcoin, FaEthereum, FaArrowUp, FaMinus, FaChartLine, FaCoins, FaWifi } from 'react-icons/fa';
+import { FaGithub, FaEnvelope, FaTelegram, FaDiscord, FaDownload, FaArrowDown, FaRocket, FaGem, FaBolt, FaBitcoin, FaEthereum, FaArrowUp, FaMinus, FaWifi } from 'react-icons/fa';
 import { fetchCryptoPrices, getMockCryptoData } from '../services/cryptoApi';
 
 const Hero = () => {
@@ -19,15 +19,6 @@ const Hero = () => {
   const [cryptoError, setCryptoError] = useState(null);
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [lastUpdated, setLastUpdated] = useState(null);
-
-  const texts = [
-    'Senior Blockchain Developer',
-    'Smart Contract Architect',
-    'DeFi Protocol Builder',
-    'NFT Marketplace Creator',
-    'Cross-Chain Solutions Expert',
-    'Web3 Innovation Leader'
-  ];
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -51,7 +42,7 @@ const Hero = () => {
             data = await fetchCryptoPrices();
             setLastUpdated(new Date());
           } catch (apiError) {
-            console.warn('API failed, using mock data:', apiError);
+            // API failed, using mock data
             data = getMockCryptoData();
             setCryptoError('Using cached data - API unavailable');
           }
@@ -62,7 +53,7 @@ const Hero = () => {
         
         setPrices(data);
       } catch (err) {
-        console.error('Error fetching prices:', err);
+        // Error fetching prices
         setCryptoError('Failed to fetch prices');
         setPrices(getMockCryptoData());
       } finally {
@@ -94,6 +85,15 @@ const Hero = () => {
 
   // Custom typing animation effect
   useEffect(() => {
+    const texts = [
+      'Senior Blockchain Developer',
+      'Smart Contract Architect',
+      'DeFi Protocol Builder',
+      'NFT Marketplace Creator',
+      'Cross-Chain Solutions Expert',
+      'Web3 Innovation Leader'
+    ];
+
     const timeout = setTimeout(() => {
       const current = texts[currentIndex];
       
@@ -112,7 +112,7 @@ const Hero = () => {
     }, isDeleting ? 50 : 100);
 
     return () => clearTimeout(timeout);
-  }, [currentText, isDeleting, currentIndex, texts]);
+  }, [currentText, isDeleting, currentIndex]);
 
   // Crypto utility functions
   const formatPrice = (price) => {
@@ -124,12 +124,6 @@ const Hero = () => {
     }).format(price);
   };
 
-  const formatMarketCap = (marketCap) => {
-    if (marketCap >= 1e12) return `$${(marketCap / 1e12).toFixed(2)}T`;
-    if (marketCap >= 1e9) return `$${(marketCap / 1e9).toFixed(2)}B`;
-    if (marketCap >= 1e6) return `$${(marketCap / 1e6).toFixed(2)}M`;
-    return `$${marketCap.toLocaleString()}`;
-  };
 
   const getChangeIcon = (change) => {
     if (change > 0) return <FaArrowUp className="text-green-400" />;

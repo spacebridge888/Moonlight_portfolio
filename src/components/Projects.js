@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  FaGithub, FaExternalLinkAlt, FaCode, FaRocket, FaShieldAlt, FaUsers, FaChartLine, FaTimes,
+  FaGithub, FaExternalLinkAlt, FaChartLine, FaTimes, FaBolt,
   FaCoins, FaImage, FaBuilding, FaLandmark, FaChartBar, FaGamepad, FaLock, FaRocket as FaLaunchpad,
-  FaShieldAlt as FaInsurance, FaHdd, FaMagic, FaGem, FaEthereum, FaBolt, FaDatabase
+  FaShieldAlt as FaInsurance, FaHdd, FaMagic
 } from 'react-icons/fa';
 import { projects } from '../data/projects';
 
@@ -332,7 +332,7 @@ const Projects = () => {
               Interested in Working Together?
             </h3>
             <p className="text-secondary-300 mb-6">
-              These projects represent just a fraction of my capabilities. I'm always excited 
+              These projects represent just a fraction of my capabilities. I&apos;m always excited 
               to take on new challenges and build innovative blockchain solutions.
             </p>
             <motion.a
@@ -341,7 +341,7 @@ const Projects = () => {
               whileTap={{ scale: 0.95 }}
               className="btn-primary inline-flex items-center"
             >
-              Let's Discuss Your Project
+              Let&apos;s Discuss Your Project
             </motion.a>
           </div>
         </motion.div>
