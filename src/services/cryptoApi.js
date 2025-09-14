@@ -5,6 +5,10 @@ const COINGECKO_API_URL = 'https://api.coingecko.com/api/v3';
 
 export const fetchCryptoPrices = async () => {
   try {
+    // Add timeout and better error handling for build compatibility
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
     const response = await fetch(
       `${COINGECKO_API_URL}/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true`,
       {
@@ -13,8 +17,11 @@ export const fetchCryptoPrices = async () => {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
+        signal: controller.signal
       }
     );
+
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
