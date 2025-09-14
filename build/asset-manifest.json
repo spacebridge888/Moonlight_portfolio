@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Moonlight_portfolio/static/css/main.af0cfaea.css",
-    "main.js": "/Moonlight_portfolio/static/js/main.68b985bf.js",
+    "main.css": "/Moonlight_portfolio/static/css/main.f72527d6.css",
+    "main.js": "/Moonlight_portfolio/static/js/main.82c1ad9f.js",
     "index.html": "/Moonlight_portfolio/index.html",
-    "main.af0cfaea.css.map": "/Moonlight_portfolio/static/css/main.af0cfaea.css.map",
-    "main.68b985bf.js.map": "/Moonlight_portfolio/static/js/main.68b985bf.js.map"
+    "main.f72527d6.css.map": "/Moonlight_portfolio/static/css/main.f72527d6.css.map",
+    "main.82c1ad9f.js.map": "/Moonlight_portfolio/static/js/main.82c1ad9f.js.map"
   },
   "entrypoints": [
-    "static/css/main.af0cfaea.css",
-    "static/js/main.68b985bf.js"
+    "static/css/main.f72527d6.css",
+    "static/js/main.82c1ad9f.js"
   ]
 }
