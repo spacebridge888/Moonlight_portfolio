@@ -6,19 +6,21 @@ import {
   FaShieldAlt as FaInsurance, FaHdd, FaMagic
 } from 'react-icons/fa';
 import { projects } from '../data/projects';
+import type { Project } from '../types';
+import type { IconType } from 'react-icons';
 
 const Projects = () => {
-  const [activeCategory, setActiveCategory] = useState('All');
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const categories = ['All', 'DeFi', 'NFT', 'Infrastructure', 'Governance', 'Analytics', 'Gaming', 'Security', 'Launchpad', 'Insurance', 'Storage', 'Prediction'];
+  const categories = ['All', 'DeFi', 'NFT', 'Infrastructure', 'Governance', 'Analytics', 'Gaming', 'Security', 'Launchpad', 'Insurance', 'Storage', 'Prediction'] as const;
 
   const filteredProjects = activeCategory === 'All' 
     ? projects 
-    : projects.filter(project => project.category === activeCategory);
+    : projects.filter((project: Project) => project.category === activeCategory);
 
-  const getCategoryIcon = (category) => {
-    const icons = {
+  const getCategoryIcon = (category: string) => {
+    const icons: Record<string, IconType> = {
       'DeFi': FaCoins,
       'NFT': FaImage,
       'Infrastructure': FaBuilding,
@@ -35,7 +37,7 @@ const Projects = () => {
     return <IconComponent className="text-6xl text-primary-400/20" />;
   };
 
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: Project['status']) => {
     return status === 'Live' ? 'text-green-400 bg-green-500/20' : 'text-yellow-400 bg-yellow-500/20';
   };
 
@@ -95,7 +97,7 @@ const Projects = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <AnimatePresence>
-            {filteredProjects.map((project, index) => (
+            {filteredProjects.map((project: Project, index: number) => (
               <motion.div
                 key={project.id}
                 layout
@@ -245,7 +247,7 @@ const Projects = () => {
                     <div>
                       <h4 className="text-xl font-bold text-white mb-3">Key Features</h4>
                       <ul className="space-y-2">
-                        {selectedProject.features.map((feature, index) => (
+                        {selectedProject.features.map((feature: string, index: number) => (
                           <li key={index} className="flex items-start text-secondary-300">
                             <span className="text-primary-400 mr-2 mt-1">•</span>
                             {feature}
@@ -257,7 +259,7 @@ const Projects = () => {
                     <div>
                       <h4 className="text-xl font-bold text-white mb-3">Technologies Used</h4>
                       <div className="flex flex-wrap gap-2">
-                        {selectedProject.technologies.map((tech) => (
+                        {selectedProject.technologies.map((tech: string) => (
                           <span
                             key={tech}
                             className="px-3 py-1 bg-secondary-800 text-secondary-300 text-sm rounded-lg"

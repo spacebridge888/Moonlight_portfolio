@@ -20,7 +20,7 @@ const Footer = () => {
     { name: 'Contact', href: '#contact' }
   ];
 
-  const scrollToSection = (href) => {
+  const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });

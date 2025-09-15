@@ -1,9 +1,11 @@
 // Crypto API service for fetching real-time cryptocurrency prices
 // Using CoinGecko API (free tier) for reliable data
 
+import { CryptoPrices } from '../types';
+
 const COINGECKO_API_URL = 'https://api.coingecko.com/api/v3';
 
-export const fetchCryptoPrices = async () => {
+export const fetchCryptoPrices = async (): Promise<CryptoPrices> => {
   // Add timeout and better error handling for build compatibility
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
@@ -52,7 +54,7 @@ export const fetchCryptoPrices = async () => {
 };
 
 // Alternative API using CoinMarketCap (requires API key)
-export const fetchCryptoPricesCMC = async (apiKey) => {
+export const fetchCryptoPricesCMC = async (apiKey: string): Promise<CryptoPrices> => {
   const response = await fetch(
     'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=BTC,ETH,SOL',
     {
@@ -93,7 +95,7 @@ export const fetchCryptoPricesCMC = async (apiKey) => {
 };
 
 // Fallback mock data for development/offline mode
-export const getMockCryptoData = () => {
+export const getMockCryptoData = (): CryptoPrices => {
   return {
     bitcoin: {
       price: 43250.67,

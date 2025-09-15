@@ -1,28 +1,28 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaTrophy, FaGem, FaGlobe, FaCog, FaPalette, FaCloud, FaTools } from 'react-icons/fa';
+import { FaTrophy, FaGem, FaGlobe, FaCog, FaPalette,  FaTools } from 'react-icons/fa';
 import { skills, experience, certifications } from '../data/skills';
+import type { SkillsData } from '../types';
 
 const Skills = () => {
-  const [activeCategory, setActiveCategory] = useState('blockchain');
+  const [activeCategory, setActiveCategory] = useState<keyof SkillsData>('blockchain');
 
   const categories = [
-    { key: 'blockchain', label: 'Blockchain & Smart Contracts', icon: FaGem },
-    { key: 'web3', label: 'Web3 & DApp Development', icon: FaGlobe },
-    { key: 'backend', label: 'Backend & APIs', icon: FaCog },
-    { key: 'frontend', label: 'Frontend Development', icon: FaPalette },
-    { key: 'databases', label: 'Databases & Cloud', icon: FaCloud },
-    { key: 'tools', label: 'Blockchain Tools & Testing', icon: FaTools }
+    { key: 'blockchain' as const, label: 'Blockchain & Smart Contracts', icon: FaGem },
+    { key: 'web3' as const, label: 'Web3 & DApp Development', icon: FaGlobe },
+    { key: 'backend' as const, label: 'Backend & APIs', icon: FaCog },
+    { key: 'frontend' as const, label: 'Frontend Development', icon: FaPalette },
+    { key: 'tools' as const, label: 'Blockchain Tools & Testing', icon: FaTools }
   ];
 
-  const getSkillLevel = (level) => {
+  const getSkillLevel = (level: number) => {
     if (level >= 90) return 'Expert';
     if (level >= 80) return 'Advanced';
     if (level >= 70) return 'Intermediate';
     return 'Beginner';
   };
 
-  const getSkillColor = (level) => {
+  const getSkillColor = (level: number) => {
     if (level >= 90) return 'from-green-400 to-emerald-500';
     if (level >= 80) return 'from-blue-400 to-cyan-500';
     if (level >= 70) return 'from-yellow-400 to-orange-500';
@@ -76,16 +76,16 @@ const Skills = () => {
           </div>
 
           {/* Skills Grid */}
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             <motion.div
-              key={activeCategory}
+              key={activeCategory as string}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             >
-              {skills[activeCategory].map((skill, index) => (
+              {skills[activeCategory].map((skill, index: number) => (
                 <motion.div
                   key={skill.name}
                   initial={{ opacity: 0, scale: 0.9 }}

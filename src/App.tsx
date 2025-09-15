@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -8,7 +9,7 @@ import CryptoPrices from './components/CryptoPrices';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
       {/* Header */}
@@ -83,6 +84,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;

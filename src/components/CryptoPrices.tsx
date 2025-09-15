@@ -2,17 +2,18 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaBitcoin, FaEthereum, FaRocket, FaArrowUp, FaArrowDown, FaMinus, FaChartLine, FaCoins, FaWifi } from 'react-icons/fa';
 import { fetchCryptoPrices, getMockCryptoData } from '../services/cryptoApi';
+import type { CryptoPrices } from '../types';
 
-const CryptoPrices = () => {
-  const [prices, setPrices] = useState({
+export default function CryptoPrices() {
+  const [prices, setPrices] = useState<CryptoPrices>({
     bitcoin: { price: 0, change24h: 0, marketCap: 0, volume: 0 },
     ethereum: { price: 0, change24h: 0, marketCap: 0, volume: 0 },
     solana: { price: 0, change24h: 0, marketCap: 0, volume: 0 }
   });
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [isOnline, setIsOnline] = useState(navigator.onLine);
-  const [lastUpdated, setLastUpdated] = useState(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   useEffect(() => {
     const fetchPrices = async () => {
@@ -20,7 +21,7 @@ const CryptoPrices = () => {
         setLoading(true);
         setError(null);
         
-        let data;
+        let data: CryptoPrices;
         if (isOnline) {
           try {
             data = await fetchCryptoPrices();
@@ -67,7 +68,7 @@ const CryptoPrices = () => {
     };
   }, []);
 
-  const formatPrice = (price) => {
+  const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -76,26 +77,26 @@ const CryptoPrices = () => {
     }).format(price);
   };
 
-  const formatMarketCap = (marketCap) => {
+  const formatMarketCap = (marketCap: number) => {
     if (marketCap >= 1e12) return `$${(marketCap / 1e12).toFixed(2)}T`;
     if (marketCap >= 1e9) return `$${(marketCap / 1e9).toFixed(2)}B`;
     if (marketCap >= 1e6) return `$${(marketCap / 1e6).toFixed(2)}M`;
     return `$${marketCap.toLocaleString()}`;
   };
 
-  const formatVolume = (volume) => {
+  const formatVolume = (volume: number) => {
     if (volume >= 1e9) return `$${(volume / 1e9).toFixed(2)}B`;
     if (volume >= 1e6) return `$${(volume / 1e6).toFixed(2)}M`;
     return `$${volume.toLocaleString()}`;
   };
 
-  const getChangeIcon = (change) => {
+  const getChangeIcon = (change: number) => {
     if (change > 0) return <FaArrowUp className="text-green-400" />;
     if (change < 0) return <FaArrowDown className="text-red-400" />;
     return <FaMinus className="text-gray-400" />;
   };
 
-  const getChangeColor = (change) => {
+  const getChangeColor = (change: number) => {
     if (change > 0) return 'text-green-400';
     if (change < 0) return 'text-red-400';
     return 'text-gray-400';
@@ -123,7 +124,7 @@ const CryptoPrices = () => {
       data: prices.solana,
       color: 'from-purple-500 to-pink-500'
     }
-  ];
+  ] as const;
 
   if (error && !prices.bitcoin.price) {
     return (
@@ -280,6 +281,4 @@ const CryptoPrices = () => {
       </div>
     </div>
   );
-};
-
-export default CryptoPrices;
+}

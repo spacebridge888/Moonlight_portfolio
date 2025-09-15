@@ -42,14 +42,14 @@ const Contact = () => {
     }
   ];
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     
@@ -112,7 +112,7 @@ const Contact = () => {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.02, x: 10 }}
-                  className="flex items-center space-x-4 p-4 glass-effect rounded-lg hover:bg-white/10 transition-all duration-300 group"
+                  className="flex items-center space-x-4 p-4 glass-effect rounded-lg hover:bg:white/10 transition-all duration-300 group"
                 >
                   <div className={`text-2xl ${contact.color} group-hover:scale-110 transition-transform duration-300`}>
                     <contact.icon />

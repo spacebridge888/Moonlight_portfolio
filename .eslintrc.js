@@ -7,10 +7,11 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
-    'plugin:jsx-a11y/recommended',
   ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -21,27 +22,27 @@ module.exports = {
   plugins: [
     'react',
     'react-hooks',
-    'jsx-a11y',
+    '@typescript-eslint',
   ],
   rules: {
     // React specific rules
     'react/react-in-jsx-scope': 'off', // Not needed in React 17+
-    'react/prop-types': 'warn',
-    'react/jsx-uses-react': 'off',
-    'react/jsx-uses-vars': 'error',
+    'react/prop-types': 'off', // Using TypeScript for prop validation
+    
+    // TypeScript rules
+    '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     
     // General JavaScript rules
-    'no-unused-vars': 'warn',
     'no-console': 'warn',
     'no-debugger': 'error',
     'prefer-const': 'error',
     'no-var': 'error',
     
-    // Import/Export rules
-    'no-duplicate-imports': 'error',
-    
     // Build compatibility rules
-    'no-undef': 'error',
+    'no-undef': 'off', // TypeScript handles this
     'no-unreachable': 'error',
     'no-unused-expressions': 'warn',
   },

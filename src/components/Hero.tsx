@@ -2,26 +2,27 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaEnvelope, FaTelegram, FaDiscord, FaDownload, FaArrowDown, FaRocket, FaGem, FaBolt, FaBitcoin, FaEthereum, FaArrowUp, FaMinus, FaWifi } from 'react-icons/fa';
 import { fetchCryptoPrices, getMockCryptoData } from '../services/cryptoApi';
+import type { CryptoPrices, MousePosition } from '../types';
 
 const Hero = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [currentText, setCurrentText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
+  const [currentText, setCurrentText] = useState<string>('');
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isDeleting, setIsDeleting] = useState<boolean>(false);
   
   // Crypto prices state
-  const [prices, setPrices] = useState({
+  const [prices, setPrices] = useState<CryptoPrices>({
     bitcoin: { price: 0, change24h: 0, marketCap: 0, volume: 0 },
     ethereum: { price: 0, change24h: 0, marketCap: 0, volume: 0 },
     solana: { price: 0, change24h: 0, marketCap: 0, volume: 0 }
   });
-  const [cryptoLoading, setCryptoLoading] = useState(true);
-  const [cryptoError, setCryptoError] = useState(null);
-  const [isOnline, setIsOnline] = useState(navigator.onLine);
-  const [lastUpdated, setLastUpdated] = useState(null);
+  const [cryptoLoading, setCryptoLoading] = useState<boolean>(true);
+  const [cryptoError, setCryptoError] = useState<string | null>(null);
+  const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
@@ -36,7 +37,7 @@ const Hero = () => {
         setCryptoLoading(true);
         setCryptoError(null);
         
-        let data;
+        let data: CryptoPrices;
         if (isOnline) {
           try {
             data = await fetchCryptoPrices();
@@ -115,7 +116,7 @@ const Hero = () => {
   }, [currentText, isDeleting, currentIndex]);
 
   // Crypto utility functions
-  const formatPrice = (price) => {
+  const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -124,14 +125,13 @@ const Hero = () => {
     }).format(price);
   };
 
-
-  const getChangeIcon = (change) => {
+  const getChangeIcon = (change: number) => {
     if (change > 0) return <FaArrowUp className="text-green-400" />;
     if (change < 0) return <FaArrowDown className="text-red-400" />;
     return <FaMinus className="text-gray-400" />;
   };
 
-  const getChangeColor = (change) => {
+  const getChangeColor = (change: number) => {
     if (change > 0) return 'text-green-400';
     if (change < 0) return 'text-red-400';
     return 'text-gray-400';
